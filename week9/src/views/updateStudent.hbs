@@ -1,0 +1,26 @@
+<h1>{{title}}</h1>
+
+<table>
+    <tr>
+        <td>s_id</td>
+        <td>Sname</td>
+        <td>Email</td>
+        <td>Phone</td>
+        <td>Major</td>
+        <td>Student_id</td>
+    </tr>
+    {{#each std_res}}
+        <form method="post" >
+        <tr>
+        <td><input type="text" name="s_id" placeholder={{s_id}}></td>
+        <td><input type="text" name="sname" placeholder={{Sname}}></td>
+        <td><input type="text" name="email" placeholder={{Email}}></td>
+        <td><input type="text" name="phone" placeholder={{Phone}}></td>
+        <td><input type="text" name="major" placeholder={{Major}}></td>
+        <td><input type="text" name="student_id" placeholder={{Student_id}}></td>
+        <input type="hidden" name="sid" value={{s_id}}>
+        <td><input type="submit" value="수정" formaction="/update/student"></td>
+    </tr>
+        </form>
+        {{/each}}
+</table>
