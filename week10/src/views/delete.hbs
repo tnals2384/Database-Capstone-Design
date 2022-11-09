@@ -1,20 +1,45 @@
-<h1>{{ title }}</h1>
+<h1>{{title}}</h1>
+
+<table>
+    <tr>
+        <td>Sname</td>
+        <td>Email</td>
+        <td>Phone</td>
+        <td>Major</td>
+        <td>Student_id</td>
+    </tr>
+    {{#each Student}}
+    <tr>
+        <td>{{Sname}}</td>
+        <td>{{Email}}</td>
+        <td>{{Phone}}</td>
+        <td>{{Dname}}</td>
+        <td>{{Student_id}}</td>
+    </tr>
+    {{/each}}
+</table>
+
+<h1>{{ title2 }}</h1>
 <table>
 <tr>
-<td>Dname</td>
-<td>Dnumber</td>
+<td>Class_id</td>
+<td>Cname</td>
+<td>Professor</td>
 </tr>
-{{#each department}}
+{{#each Class}}
 <form method="post">
+
 <tr>
-<td>{{Dname}}</td>
-<td>{{Dnumber}}</td>
+<td>{{class_id}}</td>
+<td>{{Cname}}</td>
+<td>{{Professor}}</td>
 <td style="border: none; margin-left: 10px;">
+<input type="hidden" name="student_id" value={{../Student_id}} >
 <button 
 style="margin-left: 10px;" 
 name='delBtn' 
 type="submit" 
-value="{{Dnumber}}" 
+value="{{class_id}}"
 formaction="/delete">
 삭제
 </button>

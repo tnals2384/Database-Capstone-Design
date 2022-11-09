@@ -9,33 +9,44 @@ router.get('/', (req, res) => {
 
 router.post('/', async (req, res) => {
     const vars = req.body;
-    const users = await selectSql.getUsers();
+    const students = await selectSql.getStudents();
     let whoAmI = '';
     let checkLogin = false;
 
-    users.map((user)=> {
-        console.log(user.Id);
-        if(vars.id === user.Id && vars.password === user.Password) {
+    students.map((student)=> {
+        if(vars.id == student.Student_id && vars.password === student.password) {
             console.log('login success!');
             checkLogin = true;
-            if( vars.id === 'admin') {
-                whoAmI = 'admin';
-            }
-            else {
-                whoAmI ='user';
-            }
+            
+            whoAmI ='student';
+        }
+        else if( vars.id === 'admin' && vars.password === 'admin1234') {
+            checkLogin = true;
+            whoAmI = 'admin';
+            
         }
     })
-
-    if(checkLogin && whoAmI === 'admin') {
-        res.redirect('/delete');
+    if(checkLogin && whoAmI==='student') {
+        res.redirect('/delete/'+vars.id)
     }
-    else if (checkLogin && whoAmI === 'user') {
-        res.redirect('/select');
+    else if(checkLogin && whoAmI==='admin') {
+        res.redirect('/select')
+
     }
     else {
         console.log('login failed!');
         res.send("<script>alert('로그인에 실패했습니다.'); location.href='/';</script>");
     }
+
+    // if(checkLogin && whoAmI === 'stduent') {
+    //     res.redirect('/select');
+    // }
+    // else if (checkLogin && whoAmI === 'user') {
+    //     res.redirect('/delete');
+    // }
+    // else {
+    //     console.log('login failed!');
+    //     res.send("<script>alert('로그인에 실패했습니다.'); location.href='/';</script>");
+    // }
 })
 module.exports= router;

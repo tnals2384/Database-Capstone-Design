@@ -5,7 +5,7 @@ const pool = mysql.createPool(
     process.env.JAWSDB_URL ?? {
         host : 'localhost',
         user : 'root',
-        database : 'week10',
+        database : 'inha',
         password : '1111111111',
         waitForConnections : true,
         connectionLimit : 10,
@@ -18,13 +18,21 @@ const promisePool = pool.promise();
 
 // select query
 export const selectSql = {
-    getUsers : async () => {
-        const [rows] = await promisePool.query(`select * from user`);
-        console.log(rows)
+    getStudents : async () => {
+        const [rows] = await promisePool.query(`select Sname, S.Email,S.Phone,Dname, Student_id, password from student AS S, Department AS D where major=department_id`);
         return rows
     },
-    getDepartment : async () => {
-        const [rows] = await promisePool.query(`select * from department`);
+     getStudent : async (student_id) => {
+         const [rows] = await promisePool.query(`select Sname,student.Email,student.Phone,Dname,Student_id from student,department where student_id="${student_id}" and major=department_id`);
+         return rows
+    },
+    getClasses : async () => {
+        const [rows] = await promisePool.query(`select * from class`);
+      
+        return rows
+    },
+    getClass : async (student_id) => {
+        const [rows] = await promisePool.query(`select C.class_id,Cname,Professor from class AS C, register AS R ,student AS S where C.class_id=R.class_id and R.s_id=S.s_id and student_id="${student_id}" `);
       
         return rows
     },
@@ -32,9 +40,8 @@ export const selectSql = {
 
 //delete query
 export const deleteSql = {
-    deleteDepartment: async (data) => {
-        console.log("deleteSql.deleteDepartment:", data.Dnumber);
-        const sql = `delete from department where Dnumber=${data.Dnumber}`
+    deleteClass: async (data) => {
+        const sql = `delete from register where class_id=${data.Class_id}`
 
         await promisePool.query(sql);
     },
