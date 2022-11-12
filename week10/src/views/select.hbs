@@ -1,5 +1,4 @@
 <h1>{{title}}</h1>
-
 <table>
     <tr>
         <td>Sname</td>
@@ -21,21 +20,18 @@
 
 <h1>{{ title2 }}</h1>
 <table>
-<tr>
-<td>Class_id</td>
-<td>Cname</td>
-<td>Professor</td>
-</tr>
-{{#each Class}}
-<form method="post">
-
-<tr>
-<td>{{class_id}}</td>
-<td>{{Cname}}</td>
-<td>{{Professor}}</td>
-<td style="border: none; margin-left: 10px;">
-</td>
-</tr> 
-</form>
-{{/each}}
+    <tr>
+        <td>Class_id</td>  
+        <td>Cname</td>
+        <td>Professor</td>
+    </tr>
+    {{#each Class}}
+    <form method="post">
+    <tr>
+        <td>{{class_id}}</td>
+        <td>{{Cname}}</td>
+        <td>{{Professor}}</td>
+    </tr> 
+    </form>
+    {{/each}}
 </table>

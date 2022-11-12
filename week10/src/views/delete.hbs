@@ -1,5 +1,4 @@
 <h1>{{title}}</h1>
-
 <table>
     <tr>
         <td>Sname</td>
@@ -21,30 +20,29 @@
 
 <h1>{{ title2 }}</h1>
 <table>
-<tr>
-<td>Class_id</td>
-<td>Cname</td>
-<td>Professor</td>
-</tr>
-{{#each Class}}
-<form method="post">
-
-<tr>
-<td>{{class_id}}</td>
-<td>{{Cname}}</td>
-<td>{{Professor}}</td>
-<td style="border: none; margin-left: 10px;">
-<input type="hidden" name="student_id" value={{../Student_id}} >
-<button 
-style="margin-left: 10px;" 
-name='delBtn' 
-type="submit" 
-value="{{class_id}}"
-formaction="/delete">
-삭제
-</button>
-</td>
-</tr> 
-</form>
-{{/each}}
+    <tr>
+        <td>Class_id</td>  
+        <td>Cname</td>
+        <td>Professor</td>
+    </tr>
+    {{#each Class}}
+    <form method="post">
+    <tr>
+        <td>{{class_id}}</td>
+        <td>{{Cname}}</td>
+        <td>{{Professor}}</td>
+        <td style="border: none; margin-left: 10px;">
+        <button
+            style="margin-left: 10px;" 
+            name='delBtn' 
+            type="submit" 
+            value="{{class_id}}"
+            formaction="/delete">
+            삭제
+        </button>
+        <input type="hidden" name="student_id" value="{{../Student_id}}">
+        </td>
+    </tr> 
+    </form>
+    {{/each}}
 </table>

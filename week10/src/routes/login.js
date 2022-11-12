@@ -38,15 +38,5 @@ router.post('/', async (req, res) => {
         res.send("<script>alert('로그인에 실패했습니다.'); location.href='/';</script>");
     }
 
-    // if(checkLogin && whoAmI === 'stduent') {
-    //     res.redirect('/select');
-    // }
-    // else if (checkLogin && whoAmI === 'user') {
-    //     res.redirect('/delete');
-    // }
-    // else {
-    //     console.log('login failed!');
-    //     res.send("<script>alert('로그인에 실패했습니다.'); location.href='/';</script>");
-    // }
 })
 module.exports= router;

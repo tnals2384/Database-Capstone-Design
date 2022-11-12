@@ -19,21 +19,22 @@ const promisePool = pool.promise();
 // select query
 export const selectSql = {
     getStudents : async () => {
-        const [rows] = await promisePool.query(`select Sname, S.Email,S.Phone,Dname, Student_id, password from student AS S, Department AS D where major=department_id`);
+        const sql = `select Sname, S.Email,S.Phone,Dname, Student_id, password from student AS S, Department AS D where major=department_id`
+        const [rows] = await promisePool.query(sql);
         return rows
     },
      getStudent : async (student_id) => {
-         const [rows] = await promisePool.query(`select Sname,student.Email,student.Phone,Dname,Student_id from student,department where student_id="${student_id}" and major=department_id`);
-         return rows
+        const sql = `select Sname,student.Email,student.Phone,Dname,Student_id from student,department where student_id="${student_id}" and major=department_id`
+        const [rows] = await promisePool.query(sql);
+        return rows
     },
     getClasses : async () => {
         const [rows] = await promisePool.query(`select * from class`);
-      
         return rows
     },
     getClass : async (student_id) => {
-        const [rows] = await promisePool.query(`select C.class_id,Cname,Professor from class AS C, register AS R ,student AS S where C.class_id=R.class_id and R.s_id=S.s_id and student_id="${student_id}" `);
-      
+        const sql = `select C.class_id,Cname,Professor from class AS C, register AS R ,student AS S where C.class_id=R.class_id and R.s_id=S.s_id and student_id="${student_id}"`
+        const [rows] = await promisePool.query(sql);
         return rows
     },
 };
