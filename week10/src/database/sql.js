@@ -42,8 +42,7 @@ export const selectSql = {
 //delete query
 export const deleteSql = {
     deleteClass: async (data) => {
-        const sql = `delete from register where class_id=${data.Class_id}`
-
+        const sql = `delete R from Register as R join Student as S on R.s_id=S.s_id where class_id=${data.Class_id} and Student_id=${data.Student_id}`
         await promisePool.query(sql);
     },
 };
