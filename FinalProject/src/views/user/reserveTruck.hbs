@@ -1,0 +1,123 @@
+<!--
+ Copyright 2022 kms
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+     http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<head>
+  <link rel="stylesheet" type="text/css" href="../../update.css" />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <script>
+    const logout = () => {window.location.href="http://localhost:3000/logout"};
+    const check = () => {window.location.href="http://localhost:3000/"};
+    const reserveCar = () => {window.location.href="http://localhost:3000/reserve/car"};
+    const reserveSuv = () => {window.location.href="http://localhost:3000/reserve/suv"};
+    const reserveTruck = () => {window.location.href="http://localhost:3000/reserve/truck"};
+
+  </script>
+</head>
+<div class="header">
+  <div class="header-logo">
+    <div class="logo"><img
+        src="https://www.inha.ac.kr/sites/kr/images/logo_2.png"
+        alt="INHA UNIVERSITY"
+      /></div>
+    <span class="logo-text">인하 중고차</span>
+  </div>
+
+  <div class="header-info">
+    <span class="header-info_title">트럭 구매 예약</span>
+  </div>
+  <div class="header-info">
+      <div class="header-info_explain">예약을 원하신다면, 형식에 맞게 예약하실 날짜를 입력하고, 예약버튼을 눌러주세요!</div>
+  </div>
+
+</div>
+
+<div class="content">
+  <div class="side">
+    <div class="side-frame">
+      <div class="side-frame_id">
+        <div class="userinfo">어서오세요 {{Cid}}님.</div>
+        <button class="logout" onclick="logout()">Logout</button>
+      </div>
+    </div>
+  <div class="side-menu">
+      <div class="side-menu_list" onclick="check()">
+        <span>예약조회/취소 </span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="reserveCar()">
+        <span>승용차 구매 예약 </span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="reserveSuv()">
+        <span>SUV 구매 예약</span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="reserveTruck()">
+        <span>Truck 구매 예약</span>
+        <span class="material-icons">add</span>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="main-top">
+        <div class="main-top_table">
+        </table>
+
+        <h1>{{ title }}</h1>
+        <table>
+            <tr>
+                <td>Vin</td>  
+                <td>가격</td>
+                <td>모델</td>
+                <td>번호판</td>
+                <td>연식</td>
+                <td>색상</td>
+                <td>주행거리</td>
+                <td>연료</td>
+                <td>적재중량</td>
+                <td>차축 개수</td>
+                <td>예약날짜</td>
+                <td>예약</td>
+            </tr>
+            {{#each Trucks}}
+           <form method="post" >
+            <tr>
+                <td>{{Vin}}</td>
+                <td>{{Price}}만원</td>
+                <td>{{Model}}</td>
+                <td>{{Plate_number}}</td>
+                <td>{{Model_year}}년</td>
+                <td>{{Color}}</td>
+                <td>{{Mileage}}km</td>
+                <td>{{Engine}}</td>
+                <td>{{Tonnage}}</td>
+                <td>{{No_of_axles}}</td>
+                <input type="hidden" name="vin" value={{Vin}}>
+                <input type="hidden" name="cartype" value={{Car_type}}>
+                <td><input type="text" name="date" placeholder="YYYY-MM-DD" required></td>
+                <td><input type="submit" value="예약" formaction="/reserve"></td>
+            </tr> 
+            </form>
+            {{/each}}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

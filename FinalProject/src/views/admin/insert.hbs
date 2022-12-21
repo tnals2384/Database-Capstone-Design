@@ -1,0 +1,190 @@
+<!--
+ Copyright 2022 kms
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+     http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<head>
+  <link rel="stylesheet" type="text/css" href="main.css" />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <script>
+    const logout = () => {window.location.href="http://localhost:3000/logout"};
+    const insertVehicle = () => {window.location.href="http://localhost:3000/"};
+    const updateReservation = () => {window.location.href="http://localhost:3000/updateReservation"};
+    const updateCar = () => {window.location.href="http://localhost:3000/update/Car"};
+    const updateSuv = () => {window.location.href="http://localhost:3000/update/Suv"};
+    const updateTruck = () => {window.location.href="http://localhost:3000/update/Truck"};
+    const Sales = () => {window.location.href="http://localhost:3000/sale"};
+
+    const typeselect = (value) => {
+        document.getElementById("car_type").value=value;
+        const cars=document.getElementsByClassName("car");
+        const suvs=document.getElementsByClassName("suv");
+        const trucks=document.getElementsByClassName("truck");
+        console.log(cars);
+        if(value=='Car') {
+        for( var i = 0; i < 2; i++ ){
+          suvs[i].style.display = 'none';
+          trucks[i].style.display = 'none';
+          cars[i].style.display = '';
+		  	}
+        }
+        else if(value=='Suv') {
+          for( var i = 0; i < 2; i++ ){
+          suvs[i].style.display = '';
+          trucks[i].style.display = 'none';
+          cars[i].style.display = 'none';
+		  	  }
+        }
+        else {
+           for( var i = 0; i < 2; i++ ){
+          suvs[i].style.display = 'none';
+          trucks[i].style.display = '';
+          cars[i].style.display = 'none';
+		  	  }
+        }
+    }
+    
+
+  </script>
+</head>
+<div class="header">
+  <div class="header-logo">
+    <div class="logo"><img
+        src="https://www.inha.ac.kr/sites/kr/images/logo_2.png"
+        alt="INHA UNIVERSITY"
+      /></div>
+    <span class="logo-text">인하 중고차</span>
+  </div>
+
+  <div class="header-info">
+    <span class="header-info_title"> 차량 정보 입력 </span>
+  </div>
+</div>
+
+<div class="content">
+  <div class="side">
+    <div class="side-frame">
+      <div class="side-frame_id">
+        <div class="userinfo">관리자 {{name}}</div>
+        <button class="logout" onclick="logout()">Logout</button>
+      </div>
+    </div>
+  <div class="side-menu">
+        <div class="side-menu_list" onclick="insertVehicle()">
+        <span>차량정보입력</span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="updateReservation()">
+        <span>예약확인/수정 </span>
+        <span class="material-icons">add</span>
+      </div>
+       <div class="side-menu_list" onclick="updateCar()">
+        <span>승용차 정보 확인/수정/삭제</span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="updateSuv()">
+        <span>SUV 정보 확인/수정/삭제</span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="updateTruck()">
+        <span>Truck 정보 확인/수정/삭제</span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="Sales()">
+        <span>판매내역</span>
+        <span class="material-icons">add</span>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="main-top">
+      <span class="main-top_title">새로운 차량의 정보를 입력하세요 </span>
+        <div class="main-top_table">
+        <form method="post">
+        <table>
+          <tr>
+          <th for="carType">Car_type</th>
+          <td>
+            <select id="carType" required onchange="typeselect(this.value)">
+                <option value="Car" selected>Car</option>
+                <option value="Suv">Suv</option>
+                <option value="Truck">Truck</option>
+            </select>
+          </td>
+          <input id="car_type" name="car_type" type="hidden" value="Car"/>
+          </tr>
+          <tr>
+              <th>가격</th>
+              <td><input id="price" name="price" type="text" required >만원</td>
+          </tr>
+          <tr>
+              <th>Model</th>
+              <td><input id="model" name="model" type="text" required ></td>
+          </tr>
+          <tr>
+              <th>차량번호</th>
+              <td><input id="plateNumber" name="plateNumber" type="text" required></td>
+          </tr>
+          <tr>
+              <th>차량연식</th>
+              <td><input id="modelYear" name="modelYear" type="text">년</td>
+          </tr>
+          <tr>
+              <th>색상</th>
+              <td><input id="color" name="color" type="text" ></td>
+          </tr>
+          <tr>
+              <th>주행거리</th>
+              <td><input id="mileage" name="mileage" type="text">km</td>
+          </tr>
+          <tr>
+              <th>연료</th>
+              <td><input id="engine" name="engine" type="text"  placeholder="가솔린/디젤/전기/LPG"></td>
+          </tr>
+          <tr class="car" >
+              <th>차급</th>
+              <td><input id="carsize" name="carsize" type="text"  placeholder="경/소/중/준중/준대"></td>
+          </tr>
+          <tr class="car" >
+              <th >최대속도</th>
+              <td><input id="maxspeed" name="maxspeed" type="text">km/h</td>
+          </tr>
+          <tr class="suv" style="display: none;">
+              <th>탑승가능인원</th>
+              <td><input id="no_seats" name="no_seats" type="text" >인승</td>
+          </tr>
+          <tr class="suv" style="display: none;">
+              <th>차급</th>
+              <td><input id="suvsize" name="suvsize" type="text" placeholder="경/소/중/대"></td>
+          </tr>
+          <tr class="truck" style="display: none;">
+              <th>적재중량</th>
+              <td><input id="ton" name="ton" type="text">톤</td>
+          </tr>
+          <tr class="truck" style="display: none;">
+              <th>차축 개수</th>
+              <td><input id="no_of_axles" name="no_of_axles" type="text" ></td>
+          </tr>
+          <table>
+          <div>
+            <input type="submit" value="입력" formaction='/vehicle'/>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>

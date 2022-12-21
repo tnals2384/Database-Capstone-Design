@@ -1,0 +1,130 @@
+<!--
+ Copyright 2022 kms
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+     http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<head>
+  <link rel="stylesheet" type="text/css" href="../../update.css" />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <script>
+    const logout = () => {window.location.href="http://localhost:3000/logout"};
+    const insertVehicle = () => {window.location.href="http://localhost:3000/"};
+    const updateReservation = () => {window.location.href="http://localhost:3000/updateReservation"};
+    const updateCar = () => {window.location.href="http://localhost:3000/update/Car"};
+    const updateSuv = () => {window.location.href="http://localhost:3000/update/Suv"};
+    const updateTruck = () => {window.location.href="http://localhost:3000/update/Truck"};
+    const Sales = () => {window.location.href="http://localhost:3000/sale"};
+
+
+  </script>
+</head>
+<div class="header">
+  <div class="header-logo">
+    <div class="logo"><img
+        src="https://www.inha.ac.kr/sites/kr/images/logo_2.png"
+        alt="INHA UNIVERSITY"
+      /></div>
+    <span class="logo-text">인하 중고차</span>
+  </div>
+
+  <div class="header-info">
+    <span class="header-info_title"> SUV 확인/수정/삭제 </span>
+  </div>
+</div>
+
+<div class="content">
+  <div class="side">
+    <div class="side-frame">
+      <div class="side-frame_id">
+        <div class="userinfo">관리자 {{name}}</div>
+        <button class="logout" onclick="logout()">Logout</button>
+      </div>
+    </div>
+  <div class="side-menu">
+        <div class="side-menu_list" onclick="insertVehicle()">
+        <span>차량정보입력</span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="updateReservation()">
+        <span>예약확인/수정 </span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="updateCar()">
+        <span>승용차 정보 확인/수정/삭제</span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="updateSuv()">
+        <span>SUV 정보 확인/수정/삭제</span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="updateTruck()">
+        <span>Truck 정보 확인/수정/삭제</span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="Sales()">
+        <span>판매내역</span>
+        <span class="material-icons">add</span>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="main-top">
+        <div class="main-top_table">
+        </table>
+
+        <h1>{{ title }}</h1>
+        <table>
+            <tr>
+                <td>Vin</td>  
+                <td>가격</td>
+                <td>모델</td>
+                <td>번호판</td>
+                <td>연식</td>
+                <td>색상</td>
+                <td>주행거리</td>
+                <td>연료</td>
+                <td>탑승가능인원</td>
+                <td>차급</td>
+                <td>수정</td>
+                <td>삭제</td>
+            </tr>
+            {{#each Suvs}}
+           <form method="post" >
+            <tr>
+                <td>{{Vin}}</td>
+                <td><input type="text" name="price" value={{Price}}>만원</td>
+                <td><input type="text" name="model" value={{Model}}></td>
+                <td><input type="text" name="plateNumber" value={{Plate_number}}></td>
+                <td><input type="text" name="modelYear" value={{Model_year}}>년</td>
+                <td><input type="text" name="color" value={{Color}}></td>
+                <td><input type="text" name="mileage" value={{Mileage}}>km</td>
+                <td><input type="text" name="engine" value={{Engine}}></td>
+                <td><input type="text" name="no_seats" value={{No_seats}}>인승</td>
+                <td><input type="text" name="size" value={{Size}}></td>
+                <input type="hidden" name="vin" value={{Vin}}>
+                <input type="hidden" name="cartype" value={{Car_type}}>
+                <td><input type="submit" value="수정" formaction="/update/Suv"></td>
+                <td><input type="submit" value="삭제" formaction="/delete"></td>
+            </tr> 
+            </form>
+            {{/each}}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

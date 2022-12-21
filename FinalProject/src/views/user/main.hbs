@@ -1,0 +1,108 @@
+<!--
+ Copyright 2022 kms
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+     http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<head>
+  <link rel="stylesheet" type="text/css" href="main.css" />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <script>
+    const logout = () => {window.location.href="http://localhost:3000/logout"};
+    const check = () => {window.location.href="http://localhost:3000/"};
+    const reserveCar = () => {window.location.href="http://localhost:3000/reserve/car"};
+    const reserveSuv = () => {window.location.href="http://localhost:3000/reserve/suv"};
+    const reserveTruck = () => {window.location.href="http://localhost:3000/reserve/truck"};
+  </script>
+</head>
+<div class="header">
+  <div class="header-logo">
+    <div class="logo"><img
+        src="https://www.inha.ac.kr/sites/kr/images/logo_2.png"
+        alt="INHA UNIVERSITY"
+      /></div>
+    <span class="logo-text">인하 중고차</span>
+  </div>
+
+  <div class="header-info">
+    <span class="header-info_title">내 예약조회/취소</span>
+  </div>
+</div>
+
+<div class="content">
+  <div class="side">
+    <div class="side-frame">
+      <div class="side-frame_id">
+        <div class="userinfo">어서오세요 {{Cid}}님.</div>
+        <button class="logout" onclick="logout()">Logout</button>
+      </div>
+    </div>
+  <div class="side-menu">
+      <div class="side-menu_list" onclick="check()">
+        <span>예약조회/취소 </span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="reserveCar()">
+        <span>승용차 구매 예약 </span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="reserveSuv()">
+        <span>SUV 구매 예약</span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="reserveTruck()">
+        <span>Truck 구매 예약</span>
+        <span class="material-icons">add</span>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="main-top">
+        <div class="main-top_table">
+        </table>
+
+        <h1>{{ title }}</h1>
+        <table>
+            <tr>
+                <td>ID</td>  
+                <td>Vin</td>
+                <td>Model</td>
+                <td>Date</td>
+                <td>state</td>
+                <td>판매담당자</td>
+                <td>예약취소</td>
+            </tr>
+            {{#each MyReservation}}
+           <form method="post" >
+            <tr>
+                <td>{{ID}}</td>
+                <td >{{Vin}}</td>
+                <td>{{Model}}</td>
+                <td>{{Date}}</td>
+                <td>{{State}}</td>
+                <td>{{판매담당자}}</td>
+                <input name="ID" value={{ID}} type="hidden"/>
+                <input name="Date" value={{Date}} type="hidden"/>
+                <td><input type="submit" value="취소" formaction="/cancel"></td>
+            </tr> 
+            </form>
+            {{/each}}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

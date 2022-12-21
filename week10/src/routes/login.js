@@ -23,7 +23,6 @@ router.post('/', async (req, res) => {
         else if( vars.id === 'admin' && vars.password === 'admin1234') {
             checkLogin = true;
             whoAmI = 'admin';
-            
         }
     })
     if(checkLogin && whoAmI==='student') {
